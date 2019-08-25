@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import interact from "interactjs";
 import "./index.css";
 import imagen from "./foto.jpg";
@@ -74,13 +74,12 @@ const InteractiveImage = () => {
     target.setAttribute("data-x", x);
     target.setAttribute("data-y", y);
   }
-
   // this is used later in the resizing and gesture demos
   window.dragMoveListener = dragMoveListener;
 
   return (
     <div className="container resize-container">
-      <div class={"resize-drag"}>Resize from any edge or corner</div>
+      <div className={"resize-drag"}>Resize from any edge or corner</div>
       <ImageBox
         width="100%"
         radius="10px"

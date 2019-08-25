@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "../../components/Grid";
 import ProductBox from "../../components/ProductBox";
 import styles from "./index.module.sass";
@@ -7,6 +7,36 @@ import InteractiveImage from "../../components/InteractiveImage";
 import ImageBox from "../../components/ImageBox";
 
 const Panel = () => {
+  const [productsToShow, setProductsToShow] = useState([]);
+
+  useEffect(() => {});
+
+  const onSelectProduct = idProduct => {
+    let auxProductsToShow = [...productsToShow];
+    let existItem = auxProductsToShow.find(item => {
+      console.log(item.image);
+      console.log(idProduct.image);
+      return item.image === idProduct.image;
+    });
+
+    if (existItem === undefined) {
+      auxProductsToShow.push(idProduct);
+    } else {
+      auxProductsToShow.splice(auxProductsToShow.indexOf(idProduct), 1);
+    }
+    setProductsToShow(auxProductsToShow);
+
+    console.log(productsToShow);
+  };
+
+  const existElement = product => {
+    const seletedItem = productsToShow.find(item => {
+      return item.image === product.image;
+    });
+    if (seletedItem === undefined) return false;
+    else return true;
+  };
+
   const list = [
     {
       image:
@@ -27,12 +57,23 @@ const Panel = () => {
         "https://elektra.vteximg.com.br/arquivos/ids/405264-100-100/26001727.jpg?v=636552617007770000"
     }
   ];
-
   const listToRender = list.map((product, index) => {
     return (
-      <ProductBox key={index} data={product} boxShadow={true}></ProductBox>
+      <div className={styles.container} key={index}>
+        <input
+          type="checkbox"
+          checked={() => {
+            existElement(product);
+          }}
+          onClick={() => {
+            onSelectProduct(product);
+          }}
+        />
+        <ProductBox key={index} data={product} boxShadow={true}></ProductBox>
+      </div>
     );
   });
+
   return (
     <div className={styles.container}>
       <div className={styles.leftPanel}>

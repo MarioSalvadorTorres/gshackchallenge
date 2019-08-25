@@ -49,7 +49,7 @@ const ProductBox = ({ id, data = null, boxShadow = false }) => {
         />
       </div>
       <div className={styles.body}>
-        <TextBox size="medium" color="#666666">
+        <TextBox size="small" color="#666666">
           <strong>
             <div className={`${styles.title} ${loadingClass}`}>
               {product.name}
@@ -75,7 +75,7 @@ const ProductBox = ({ id, data = null, boxShadow = false }) => {
         <TextBox size="small" color="#666666">
           Precio de contado
         </TextBox>
-        <TextBox size="medium" className={`${styles.cash} ${loadingClass}`}>
+        <TextBox size="small" className={`${styles.cash} ${loadingClass}`}>
           <span>{!!product.price && `$${setCurrency(product.price)}`}</span>
           <del>{!!product.lastPrice && setCurrency(product.lastPrice)}</del>
         </TextBox>
@@ -83,7 +83,7 @@ const ProductBox = ({ id, data = null, boxShadow = false }) => {
         <TextBox size="small" color="#666666">
           Disponible para:
         </TextBox>
-        <TextBox size="large" color="#000000">
+        <TextBox size="small" color="#000000">
           <strong>
             <div
               className={`${styles.deliveryType} ${product.logisticsInfo &&
