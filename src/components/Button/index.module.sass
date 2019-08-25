@@ -1,0 +1,76 @@
+$tomato: #e1251b
+$greyish: #a5a5a5
+$light-gray: #e8e8e8
+$default-green: #03a322
+$rose: #F40E7B
+
+@mixin buttonType($main, $secondary, $outline, $nav)
+  @if $nav == null
+    color: $secondary
+    .button
+      background-color: $main
+      &.outline
+        background-color: transparent
+        border: 2px solid $main
+    div.textButton
+      color: $secondary
+      &.outline
+        color: $main
+        @if $outline
+          color: $outline
+
+  @if $nav == 1 or $nav == 0
+    color: $secondary
+    .button
+      background-color: $main
+    div.textButton
+      color: $secondary
+      font-weight: 600!important
+
+.wrapButton
+  text-decoration: none
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+  cursor: pointer
+  max-width: 320px
+  &.circle
+    width: 62px
+    .textButton
+      padding: 0
+
+.positionContainer
+  height: 46px
+  cursor: pointer
+
+.textButton
+  outline: none
+  user-select: none
+  -webkit-user-select: none
+  cursor: pointer
+
+.button
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+  top: 0
+  left: 0
+  z-index: -1
+  transition: all 0.2s ease-in
+  cursor: pointer
+  &.active
+    transform: scale(0.94)
+
+.default
+  @include buttonType($default-green, white, null, null)
+
+.cancel
+  @include buttonType($tomato, white, null, null)
+
+.primary
+  @include buttonType($light-gray, $default-green, $default-green, null)
+
+.secondary
+  @include buttonType($light-gray, $greyish, $greyish, null)
+
+.tertiary
+  @include buttonType(white, black, white, 1)
+
+.quarter
+  @include buttonType($rose, white, white, 0)

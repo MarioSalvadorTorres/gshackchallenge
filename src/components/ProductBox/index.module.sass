@@ -1,0 +1,77 @@
+.container
+    width: auto
+    padding: 10px
+    border-radius: 6px
+    background-color: #ffffff 
+    font-family: 'Source Sans Pro', sans-serif
+    b 
+        color: #e1251b
+    hr
+        height: 1px
+        border-style: solid
+        border-color: #e8e8e8
+        margin: 10px 0
+.boxShadow 
+      box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.16)
+
+.image
+    display: flex
+    justify-content: center
+
+.title
+    margin: 15px 0
+    height: 36px
+    overflow: hidden
+    &.loading
+        width: 80%
+
+.weeklyDescription
+    min-height: 21px
+    &.loading
+        width: 60%
+    b
+        font-size: 18px
+
+.cash
+    min-height: 21px
+    margin-top: 3px
+    font-size: 18px
+    font-weight: bold
+    &.loading
+        width: 60%
+    del
+        color: #a5a5a5
+        font-size: 14px
+        margin-left: 10px
+
+.deliveryType
+    display: flex
+    margin: 10px 0
+    color: #626376
+    align-items: center
+    font-size: 14px
+    opacity: 0.4
+    &.active
+        opacity: 1
+    svg
+        fill: #626376
+.logo
+    margin-right: 5px 
+    width: 24px
+    height: 24px
+
+.loading 
+    animation-name: parpadeo
+    animation-duration: 2.6s
+    animation-timing-function: ease-out
+    animation-iteration-count: infinite
+    background: gray
+    border-radius: 3px
+
+@keyframes parpadeo
+    0%
+        opacity: 0.3
+    50%
+        opacity: 0.1
+    100%
+        opacity: 0.3
