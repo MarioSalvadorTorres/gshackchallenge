@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using HtmlAgilityPack;
+using ScrapySharp.Extensions;
+
+namespace Scraping_v1._9.Scraping
+{
+    class Scrap
+    {
+
+
+        string item = "LEGION Y530-15ICH";
+        private void getFromElektra(string item)
+        { 
+            HtmlWeb web = new HtmlWeb();
+            HtmlDocument doc = web.Load("https://www.elektra.com.mx/notebook-gamer-lenovo-legion-y530-15ich-intel-core-i5-ram-8gb-dd-1tb-w10-15-6--28008857/p");
+
+            HtmlNode body = doc.DocumentNode.CssSelect("body").First();
+
+            string sbody =  body.InnerHtml;
+
+        }
+    }
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="">
+<style></style>
+<script src=""></script>
+<script></script>
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <div class="row">
+        <br><br>
+        <h3 style="text-align: center" id="title"></h3>
+        <br><br>
+
+        <div class="col-lg-1">
+        </div>
+
+        <div class="col-lg-11">
+
+            <div class="row">
+                <div class="col-lg-3 col-sm-3 col-md-3">
+                    <a id="imgAmazon" href="">
+                        <img style="align-content: center" src="http://versionfinal.com.ve/wp-content/uploads/2016/12/Amazon-version-final-1024x751.jpg" width="200px" alt="">
+                    </a>
+                    <h5 id="titleAmazon"></h5>
+                </div>
+                <div class="col-lg-3 col-sm-3 col-md-3">
+                    <a id="imgMercadoLibre" href="">
+
+                        <img src="https://www.conexion360.mx/wp-content/uploads/2018/09/FOTO-WEB-MERCADO-LIBRE-LOGO.jpg" width="200px" alt="">
+                    </a>
+
+                    <p id="titleMercadoLibre"></p>
+
+                </div>
+                <div class="col-lg-3 col-sm-3 col-md-3">
+                    <a id="imgWalmart" href="">
+
+                        <img src="https://i0.wp.com/axiomabeauty.com/wp-content/uploads/2019/03/Walmart-logo-vector.png?w=1200&ssl=1" width="200px" alt="">
+                    </a>
+
+                    <p id="titleWalmart"></p>
+
+
+                </div>
+                <div class="col-lg-3 col-sm-3 col-md-3">
+                    <div>
+                        <a id="imgEbay" href="">
+
+                            <img src="https://i1.wp.com/www.sopitas.com/wp-content/uploads/2012/09/ebay-nuevo-logo.jpg" width="200px;" alt="">
+                        </a>
+
+                        <p id="titleEbay"> </p>
+
+                    </div>
+                </div>
+                <div class="col-lg-11">
+
+                    <div class="col-lg-3 col-sm-3 col-md-3">
+                        <h4 style="text-align: center;" id="priceAmazon"></h4>
+
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-md-3">
+                        <h4 style="text-align: center;" id="priceMercadoLibre"></h4>
+
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-md-3">
+                        <h4 style="text-align: center;" id="priceWalmart"></h4>
+
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-md-3">
+                        <h4 style="text-align: center;" id="priceEbay"></h4>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+<img alt="" width="0" height="0" src="">
+<script>
+    var urlParams = new URLSearchParams(location.search);
+
+    urlParams.has('id');
+    urlParams.get('id');
+    urlParams.getAll('id');
+    var sdk = urlParams.toString();
+    var httpSdk = sdk.replace('id=', '');
+    $.ajax({
+        url: 'https://challenge.ektdevelopers.com/api/catalog_system/pvt/products/ProductGet/' + httpSdk,
+        type: 'get',
+        beforesend: function(e) {
+            console.log(e);
+        },
+        error: function(e) {
+            console.log(e);
+        },
+        success: function(e) {
+            console.log(e);
+            var splitName = e.Name.split('-');
+            var name = splitName[0];
+            $("#title").html(name);
+            $.ajax({
+                url: 'https://localhost:44383/Scraping/Testing?search=%22' + name + '%22',
+                method: 'get',
+                type: 'get',
+                beforesend: function() {
+                    console.log("sending...")
+                },
+                error: function(e) {
+                    console.log("ERROR");
+                    console.log(e)
+                },
+                success: function(e) {
+                    //var item = JSON.parse(e);
+                    //console.log(e);
+                    var nodeParam = e.split('[');
+                    var param = nodeParam[1];
+                    var paramFull = '[' + param;
+                    var paramPath = paramFull.split(']');
+                    var paramDefined = paramPath[0] + ']';
+
+                    var json = JSON.parse(paramDefined);
+
+                    var priceAmazon = json[0].items.price;
+                    var priceMercadoLibre = json[1].items.price;
+                    var priceWalmart = json[2].items.price;
+                    var priceEbay = json[3].items.price;
+
+                    var titleAmazon = json[0].items.url;
+                    var titleMercadoLibre = json[1].items.url;
+                    var titleWalmart = json[2].items.url;
+                    var titleEbay = json[3].items.url;
+
+                    var urlAmazon = json[0].items.url;
+                    var urlMercadoLibre = json[1].items.url;
+                    var urlWalmart = json[2].items.url;
+                    var urlEbay = json[3].items.url;
+
+
+                    console.log(json);
+                    $("#priceAmazon").html(priceAmazon == '404' ? 'n/a' : priceAmazon);
+                    $("#priceMercadoLibre").html(priceMercadoLibre == '404' ? 'n/a' : '$' + priceMercadoLibre);
+                    $("#priceWalmart").html(priceWalmart == '404' ? 'n/a' : priceWalmart);
+                    $("#priceEbay").html(priceEbay == '404' ? 'n/a' : priceEbay);
+
+                    $("#imgAmazon").attr('href', urlAmazon);
+                    $("#imgMercadoLibre").attr('href', urlMercadoLibre);
+                    $("#imgWalmart").attr('href', urlWalmart);
+                    $("#imgEbay").attr('href', urlEbay);
+
+                    $("#imgAmazon").attr('target', '__blank');
+                    $("#imgMercadoLibre").attr('target', '__blank');
+                    $("#imgWalmart").attr('target', '__blank');
+                    $("#imgEbay").attr('target', '__blank');
+
+
+                    /*  $("#titleAmazon").html(titleAmazon == '' ? 'n/a' : titleAmazon);
+                    $("#titleMercadoLibre").html(titleMercadoLibre == '404' ? 'n/a' : titleMercadoLibre);
+                    $("#titleWalmart").html(titleWalmart == '404' ? 'n/a' : titleWalmart);
+                    $("#titleEbay").html(titleEbay == '404' ? 'n/a' : titleEbay);
+*/
+                }
+            });
+        }
+    });
+
+</script>
